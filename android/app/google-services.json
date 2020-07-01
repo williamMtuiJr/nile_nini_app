@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "782966384152",
+    "firebase_url": "https://mobile-health-app-nn.firebaseio.com",
+    "project_id": "mobile-health-app-nn",
+    "storage_bucket": "mobile-health-app-nn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782966384152:android:2618f4593f65e1660f456d",
+        "android_client_info": {
+          "package_name": "com.williamjr.nnapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782966384152-u585athagoksth5p2952emrv1uom0bp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmC901JzcvD0I8y7Fm6XavCxSb7F_6mJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782966384152-u585athagoksth5p2952emrv1uom0bp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
