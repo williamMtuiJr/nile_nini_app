@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nnapp/pages/calorie_counter.dart';
 import 'package:nnapp/pages/chat_screen.dart';
 import 'constants.dart';
+import 'feeds_page.dart';
 
 class HomePage extends StatefulWidget {
   static String id = '/Seventh';
@@ -54,6 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
         Navigator.pushNamed(context, ChatScreen.id);
       } else if (_selectedIndex == 2) {
         Navigator.pushNamed(context, CalorieCounter.id);
+      } else if (_selectedIndex == 1) {
+        Navigator.pushNamed(context, InstaHome.id);
       }
     });
   }
@@ -61,6 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        elevation: 4.0,
+        icon: const Icon(FontAwesomeIcons.plus),
+        backgroundColor: Colors.green,
+        label: const Text(''),
+        onPressed: () {
+//          _selectedIndex = 3;
+          Navigator.pushNamed(context, CalorieCounter.id);
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nnapp/pages/log_meals.dart';
 import 'chat_screen.dart';
@@ -25,48 +26,105 @@ class _CalorieCounterState extends State<CalorieCounter> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Column(
-            children: <Widget>[
-              CircleAvatar(
-                radius: 34.0,
-                child: Icon(
-                  Icons.restaurant_menu,
-                  size: 34.0,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Center(
+                  child: CircleAvatar(
+                    backgroundColor: Colors.greenAccent,
+                    child: Text('150kCal'),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '408 of 23303 eaten',
+                Card(
+                  elevation: 3.0,
+                  child: ListTile(
+                    leading: Image.asset('assets/images/take_photo.png'),
+                    title: Text(
+                      'Add Breakfast',
                       style: TextStyle(
-                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold, /*fontSize: 20.0*/
                       ),
                     ),
+                    subtitle: Text(
+                      'Recommended 100 - 600 kCal',
+                      style: TextStyle(/*fontSize: 10.0*/),
+                    ),
+                    trailing: Icon(Icons.add_circle),
                   ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, LogMeals.id);
-                      },
-                      child: Icon(
-                        Icons.add_circle,
-                        size: 34.0,
+                ),
+                Card(
+                  elevation: 3.0,
+                  child: ListTile(
+                    leading: Image.asset('assets/images/take_photo.png'),
+                    title: Text(
+                      'Add Morning Snack',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold, /*fontSize: 20.0*/
                       ),
                     ),
+                    subtitle: Text(
+                      'Recommended 300 - 600 kCal',
+                      style: TextStyle(/*fontSize: 10.0*/),
+                    ),
+                    trailing: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, LogMeals.id);
+                        },
+                        child: Icon(Icons.add_circle)),
                   ),
-                ],
-              )
-            ],
+                ),
+                Card(
+                  elevation: 3.0,
+                  child: ListTile(
+                    leading: Image.asset('assets/images/take_photo.png'),
+                    title: Text(
+                      'Add Lunch',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold, /*fontSize: 20.0*/
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Recommended 600 - 1000 kCal',
+                      style: TextStyle(/*fontSize: 10.0*/),
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 3.0,
+                  child: ListTile(
+                    leading: Image.asset('assets/images/take_photo.png'),
+                    title: Text(
+                      'Add Evening Snack',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold, /*fontSize: 20.0*/
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Recommended 300 - 600 kCal',
+                      style: TextStyle(/*fontSize: 10.0*/),
+                    ),
+                    trailing: Icon(Icons.add_circle),
+                  ),
+                ),
+                Card(
+                  elevation: 3.0,
+                  child: ListTile(
+                    leading: Image.asset('assets/images/take_photo.png'),
+                    title: Text(
+                      'Add Dinner',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold, /*fontSize: 20.0*/
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Recommended 600 - 1000 kCal',
+                      style: TextStyle(/*fontSize: 10.0*/),
+                    ),
+                    trailing: Icon(Icons.add_circle),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,6 +1,6 @@
 //import 'package:flash_chat/constants.dart';
-import 'package:nnapp/pages/home_page.dart';
-
+//import 'package:nnapp/pages/home_page.dart';
+import 'package:nnapp/screens/home_page.dart';
 import '../constants.dart';
 //import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:nnapp/pages/chat_screen.dart';
@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 //import '../components/rounded_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:nnapp/common/Validation.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -21,87 +22,102 @@ class _LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
 
+  //Validation Shit
+  final _formKey = GlobalKey<FormState>();
+  bool autoValidate = false;
+  TextEditingController usernameController;
+  TextEditingController phoneNumberController;
+  TextEditingController passwordController;
+
+  FocusNode usernameNode, phoneNumberNode, passwordNode;
+  Validations _validations = Validations();
+  //End of Validation Shit
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Flexible(
-                child: Hero(
-                  tag: 'logo',
-                  child: Container(
-                    height: 200.0,
-                    child: Image.asset('assets/images/logo.jpg'),
+        child: Form(
+          key: _formKey,
+          autovalidate: autoValidate,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Flexible(
+                  child: Hero(
+                    tag: 'logo',
+                    child: Container(
+                      height: 200.0,
+                      child: Image.asset('assets/images/logo.jpg'),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 48.0,
-              ),
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  email = value;
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter your email',
-                  icon: Icon(
-                    Icons.email,
-                    color: Colors.green,
+                SizedBox(
+                  height: 48.0,
+                ),
+                TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    email = value;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your email',
+                    icon: Icon(
+                      Icons.email,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                obscureText: true,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  password = value;
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter your password',
-                  icon: Icon(
-                    Icons.lock,
-                    color: Colors.green,
+                SizedBox(
+                  height: 8.0,
+                ),
+                TextField(
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    password = value;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your password',
+                    icon: Icon(
+                      Icons.lock,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 24.0,
-              ),
-              RoundedButton(
-                title: 'Log In',
-                colour: Colors.green,
-                onPressed: () async {
-                  setState(() {
-                    showSpinner = true;
-                  });
-                  try {
-                    final user = await _auth.signInWithEmailAndPassword(
-                        email: email, password: password);
-                    if (user != null) {
-                      Navigator.pushNamed(context, HomePage.id);
-                    }
-
+                SizedBox(
+                  height: 24.0,
+                ),
+                RoundedButton(
+                  title: 'Log In',
+                  colour: Colors.green,
+                  onPressed: () async {
                     setState(() {
-                      showSpinner = false;
+                      showSpinner = true;
                     });
-                  } catch (e) {
-                    print(e);
-                  }
-                },
-              ),
-            ],
+                    try {
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                      if (user != null) {
+                        Navigator.pushNamed(context, HomePage.id);
+                      }
+
+                      setState(() {
+                        showSpinner = false;
+                      });
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

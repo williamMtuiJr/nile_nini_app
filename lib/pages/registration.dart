@@ -33,118 +33,121 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: ModalProgressHUD(
-        inAsyncCall: showSpinner,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Flexible(
-                child: Hero(
-                  tag: 'logo',
-                  child: Container(
-                    height: 200.0,
-                    child: Image.asset('assets/images/logo.jpg'),
+      body: SafeArea(
+        child: ModalProgressHUD(
+          inAsyncCall: showSpinner,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Flexible(
+                  child: Hero(
+                    tag: 'logo',
+                    child: Container(
+                      height: 200.0,
+                      child: Image.asset('assets/images/logo.jpg'),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 48.0,
-              ),
-              TextField(
-                controller: messageTextController2,
+                SizedBox(
+                  height: 48.0,
+                ),
+                TextField(
+                  controller: messageTextController2,
 //                obscureText: true,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  first_name = value;
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'First Name',
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.green,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    first_name = value;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'First Name',
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                controller: messageTextController,
+                SizedBox(
+                  height: 8.0,
+                ),
+                TextField(
+                  controller: messageTextController,
 //                obscureText: true,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  last_name = value;
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Last Name',
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.green,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    last_name = value;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Last Name',
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  email = value;
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter your email',
-                  icon: Icon(
-                    Icons.email,
-                    color: Colors.green,
+                SizedBox(
+                  height: 8.0,
+                ),
+                TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    email = value;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your email',
+                    icon: Icon(
+                      Icons.email,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                obscureText: true,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  password = value;
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter your password',
-                  icon: Icon(
-                    Icons.lock,
-                    color: Colors.green,
+                SizedBox(
+                  height: 8.0,
+                ),
+                TextField(
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    password = value;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your password',
+                    icon: Icon(
+                      Icons.lock,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 24.0,
-              ),
-              RoundedButton(
-                title: 'Register',
-                colour: Colors.green,
-                onPressed: () async {
-                  setState(() {
-                    showSpinner = true;
-                  });
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-
-                    if (newUser != null) {
-                      Navigator.pushNamed(context, HomePage.id);
-                    }
-
-                    //Send username to firestore
-                    messageTextController.clear();
-                    messageTextController2.clear();
-                    _firestore.collection('user').add({
-                      'first_name': first_name,
-                      'last_name': last_name,
+                SizedBox(
+                  height: 24.0,
+                ),
+                RoundedButton(
+                  title: 'Register',
+                  colour: Colors.green,
+                  onPressed: () async {
+                    setState(() {
+                      showSpinner = true;
                     });
+
+                    try {
+                      final newUser =
+                          await _auth.createUserWithEmailAndPassword(
+                              email: email, password: password);
+
+                      if (newUser != null) {
+                        Navigator.pushNamed(context, HomePage.id);
+                      }
+
+                      //Send username to firestore
+                      messageTextController.clear();
+                      messageTextController2.clear();
+                      _firestore.collection('user').add({
+                        'first_name': first_name,
+                        'last_name': last_name,
+                      });
 //                    _firestore.collection('messages').add({
 //                      'name': first_name,
 //                      'text': '$first_name has joined the group',
@@ -152,21 +155,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 //                      'timestamp': DateTime.now().millisecondsSinceEpoch,
 //                    });
 
-                    setState(() {
-                      showSpinner = false;
-                    });
-                  } catch (e) {
-                    print(e);
-                  }
-                },
-              ),
-              FlatButton(
-                child: Text("Already Have an Account"),
-                onPressed: () {
-                  Navigator.pushNamed(context, LoginScreen.id);
-                },
-              ),
-            ],
+                      setState(() {
+                        showSpinner = false;
+                      });
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
+                ),
+                FlatButton(
+                  child: Text("Already Have an Account"),
+                  onPressed: () {
+                    Navigator.pushNamed(context, LoginScreen.id);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

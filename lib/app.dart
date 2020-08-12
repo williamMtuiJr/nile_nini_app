@@ -12,10 +12,12 @@ import 'package:nnapp/pages/language.dart';
 //import 'package:nile_nini/pages/registration.dart';
 import 'package:nnapp/pages/registration.dart';
 import './pages/chat_screen.dart';
-import 'package:nnapp/pages/home_page.dart';
+//import 'package:nnapp/pages/home_page.dart';
 import 'package:nnapp/pages/login_screen.dart';
 import 'package:nnapp/pages/calorie_counter.dart';
 import 'package:nnapp/pages/log_meals.dart';
+import 'pages/feeds_page.dart';
+import 'screens/home_page.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -38,6 +40,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         CalorieCounter.id: (context) => CalorieCounter(),
         LogMeals.id: (context) => LogMeals(),
+        InstaHome.id: (context) => InstaHome(),
       },
     );
   }
