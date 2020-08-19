@@ -31,6 +31,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   FocusNode usernameNode, phoneNumberNode, passwordNode;
   Validations _validations = Validations();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    usernameController = TextEditingController();
+    phoneNumberController = TextEditingController();
+    passwordController = TextEditingController();
+  }
   //End of Validation Shit
 
   @override
@@ -60,7 +69,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 48.0,
                 ),
-                TextField(
+                TextFormField(
+                  cursorColor: Colors.green,
+                  validator: _validations.validateUserName,
+                  controller: usernameController,
+                  focusNode: usernameNode,
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   onChanged: (value) {
@@ -77,7 +90,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 8.0,
                 ),
-                TextField(
+                TextFormField(
+                  cursorColor: Colors.green,
+                  validator: _validations.validatePassword,
+                  controller: passwordController,
+                  focusNode: passwordNode,
                   obscureText: true,
                   textAlign: TextAlign.center,
                   onChanged: (value) {
@@ -100,6 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () async {
                     setState(() {
                       showSpinner = true;
+                      autoValidate = true;
                     });
                     try {
                       final user = await _auth.signInWithEmailAndPassword(
@@ -108,11 +126,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushNamed(context, HomePage.id);
                       }
 
+                      //Clear Text Controllers
+                      usernameController.clear();
+                      passwordController.clear();
+
                       setState(() {
                         showSpinner = false;
                       });
                     } catch (e) {
                       print(e);
+                      setState(() {
+                        showSpinner = false;
+                      });
                     }
                   },
                 ),

@@ -6,6 +6,9 @@ import './../components/app_bar_items.dart';
 import './../constants.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
+import './../pages/log_meals.dart';
+import 'package:nnapp/pages/log_meals.dart';
+import 'ml_page.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -62,89 +65,89 @@ class _DashboardPageState extends State<DashboardPage> {
                 ],
               ),
             ),
-            Card(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.restaurant_menu,
-                              color: Colors.lightBlueAccent,
-                            ),
-                          ),
-                          Text('Food'),
-                        ],
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
-                        child: RaisedButton(
-                          disabledColor: kBackgroundColour,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: MediaQuery.of(context).size.width / 100,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 0.5),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          elevation: 0.0,
-                          color: Colors.white70,
-                          onPressed: () {
-                            //TODO: Implement Adding Food
-                          },
-                          child: Text(
-                            'Add',
-                            style: TextStyle(
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            Text(
-                              '2300',
-                              style: TextStyle(
-                                fontSize: 22.0,
-                                color: Colors.black38,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              ' /2500 KCal',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.black38,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ProgressBar(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+//            Card(
+//              child: Column(
+//                children: [
+//                  Row(
+//                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                    children: [
+//                      Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                        children: [
+//                          Padding(
+//                            padding: const EdgeInsets.all(8.0),
+//                            child: Icon(
+//                              Icons.restaurant_menu,
+//                              color: Colors.lightBlueAccent,
+//                            ),
+//                          ),
+//                          Text('Food'),
+//                        ],
+//                      ),
+//                      Padding(
+//                        padding:
+//                            const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+//                        child: RaisedButton(
+//                          disabledColor: kBackgroundColour,
+//                          padding: EdgeInsets.symmetric(
+//                            horizontal: MediaQuery.of(context).size.width / 100,
+//                          ),
+//                          shape: RoundedRectangleBorder(
+//                            side: BorderSide(width: 0.5),
+//                            borderRadius: BorderRadius.circular(20.0),
+//                          ),
+//                          elevation: 0.0,
+//                          color: Colors.white70,
+//                          onPressed: () {
+//                            //TODO: Implement Adding Food
+//                          },
+//                          child: Text(
+//                            'Add',
+//                            style: TextStyle(
+//                              color: Colors.black87,
+//                            ),
+//                          ),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
+//                  Row(
+//                    children: [
+//                      Expanded(
+//                        flex: 1,
+//                        child: Row(
+//                          textBaseline: TextBaseline.alphabetic,
+//                          children: [
+//                            Text(
+//                              '2300',
+//                              style: TextStyle(
+//                                fontSize: 22.0,
+//                                color: Colors.black38,
+//                                fontWeight: FontWeight.bold,
+//                              ),
+//                            ),
+//                            Text(
+//                              ' /2500 KCal',
+//                              style: TextStyle(
+//                                fontSize: 12.0,
+//                                color: Colors.black38,
+//                              ),
+//                            ),
+//                          ],
+//                        ),
+//                      ),
+//                      Expanded(
+//                        flex: 2,
+//                        child: Padding(
+//                          padding: const EdgeInsets.all(8.0),
+//                          child: ProgressBar(),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
+//                ],
+//              ),
+//            ),
             CustomCard(
               title: 'Add Breakfast',
               subtitle: 'Recommended 300 - 600 kCal',
@@ -237,9 +240,17 @@ class CustomCard extends StatelessWidget {
               subtitle,
               style: TextStyle(/*fontSize: 10.0*/),
             ),
-            trailing: Icon(
-              Icons.add_circle,
-              color: kBackgroundColour2,
+            trailing: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MlPage()),
+                );
+              },
+              icon: Icon(
+                Icons.add_circle,
+              ),
+              color: Colors.green,
             ),
           ),
         ),
@@ -327,25 +338,26 @@ class NutrientContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(10.0),
       child: Column(
         children: [
           Text(
             nutrientName,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 13,
             ),
           ),
           Text(
             '$nutrientInGrams g',
             style: TextStyle(
-              fontSize: 30,
+              fontSize: 28,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
             '/ $nutrientRequired g',
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 13,
               fontWeight: FontWeight.bold,
             ),
           ),

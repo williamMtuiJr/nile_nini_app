@@ -8,6 +8,7 @@ import 'my_home_page.dart';
 import 'test.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'plans_page.dart';
+import 'chat_page.dart';
 
 class HomePage extends StatefulWidget {
   static String id = '/Seventh';
@@ -24,11 +25,9 @@ class _HomePageState extends State<HomePage> {
 
   static List<Widget> _widgetOptions = <Widget>[
     DashboardPage(),
-
     PlansPage(),
     Testing4(),
-    MyHomePage(),
-//    CommunityPage(),
+    ChatPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -63,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
                 gap: 8,
-                activeColor: Colors.purple,
+                activeColor: Colors.green,
                 iconSize: 18,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 duration: Duration(milliseconds: 800),

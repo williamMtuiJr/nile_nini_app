@@ -10,6 +10,8 @@ class ArticleView extends StatefulWidget {
 class _ArticleViewState extends State<ArticleView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+        //TODO: Implement for user to see webview of article from feeds page
+        );
   }
 }

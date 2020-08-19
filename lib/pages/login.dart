@@ -107,12 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-              )
-//          TextFormField(
-//            controller: userName,
-//            keyboardType: TextInputType.text,
-//           // initialValue: 'userName',
-//          )
+              ),
             ],
           ),
         ),
