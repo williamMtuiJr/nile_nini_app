@@ -10,12 +10,12 @@ import './../pages/log_meals.dart';
 import 'package:nnapp/pages/log_meals.dart';
 import 'ml_page.dart';
 
-class DashboardPage extends StatefulWidget {
+class HomePageDashboard extends StatefulWidget {
   @override
-  _DashboardPageState createState() => _DashboardPageState();
+  _HomePageDashboardState createState() => _HomePageDashboardState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _HomePageDashboardState extends State<HomePageDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -225,9 +225,9 @@ class CustomCard extends StatelessWidget {
           height: MediaQuery.of(context).size.height / 10,
           width: double.infinity,
           child: ListTile(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
-            ),
+//            shape: RoundedRectangleBorder(
+//              borderRadius: BorderRadius.circular(5.0),
+//            ),
             leading: image,
             title: Text(
               title,
@@ -244,7 +244,7 @@ class CustomCard extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MlPage()),
+                  MaterialPageRoute(builder: (context) => MyImagePicker()),
                 );
               },
               icon: Icon(

@@ -8,12 +8,12 @@ import 'chat_groups_intro.dart';
 //import 'discussions_intro.dart';
 import 'my_home_page.dart';
 
-class Testing4 extends StatefulWidget {
+class Insights extends StatefulWidget {
   @override
-  _Testing4State createState() => _Testing4State();
+  _InsightsState createState() => _InsightsState();
 }
 
-class _Testing4State extends State<Testing4>
+class _InsightsState extends State<Insights>
     with SingleTickerProviderStateMixin {
   ScrollController _scrollViewController;
   TabController _tabController;

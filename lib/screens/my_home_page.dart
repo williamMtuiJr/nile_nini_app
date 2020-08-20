@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:readmore/readmore.dart';
 //import './../components/app_bar_items.dart';
 import './../constants.dart';
 import 'package:nnapp/pages/chat_screen.dart';
@@ -418,7 +419,14 @@ class FeedTypeB extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.all(8.0),
-            child: Text('yada yada .. continue reading'),
+            child: ReadMoreText(
+              'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
+              trimLines: 2,
+              colorClickableText: Colors.green,
+              trimMode: TrimMode.Line,
+              trimCollapsedText: '...read more',
+              trimExpandedText: ' show less',
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -434,6 +442,10 @@ class FeedTypeB extends StatelessWidget {
               ],
             ),
           ),
+          Divider(),
+          SizedBox(
+            height: 10,
+          )
         ],
       ),
     );

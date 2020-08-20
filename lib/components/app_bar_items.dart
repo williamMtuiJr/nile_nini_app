@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nnapp/screens/medical_profile.dart';
 import './../constants.dart';
 
 class DrawerItems extends StatelessWidget {
@@ -11,13 +12,13 @@ class DrawerItems extends StatelessWidget {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
-        children: const <Widget>[
+        children:  <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
-              color: kBackgroundColour2,
+              color: Colors.green,
             ),
             child: Text(
-              'Drawer Header',
+              'Nile Nini',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -25,16 +26,14 @@ class DrawerItems extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.message),
-            title: Text('Messages'),
-          ),
-          ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
+            onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>MedicalProfile())),
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
+            onTap: (){},
           ),
         ],
       ),

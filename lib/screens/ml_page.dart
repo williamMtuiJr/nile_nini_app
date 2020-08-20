@@ -3,12 +3,12 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:tflite/tflite.dart';
 
-class MlPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(body: Center(child: MyImagePicker())));
-  }
-}
+//class MlPage extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(home: Scaffold(body: Center(child: MyImagePicker())));
+//  }
+//}
 
 class MyImagePicker extends StatefulWidget {
   @override
@@ -46,6 +46,12 @@ class MyImagePickerState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Image Recognition'),
+        elevation: 0.0,
+        centerTitle: true,
+        backgroundColor: Colors.green,
+      ),
         body: Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

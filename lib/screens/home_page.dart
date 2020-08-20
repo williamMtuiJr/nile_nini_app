@@ -24,9 +24,9 @@ class _HomePageState extends State<HomePage> {
 //      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   static List<Widget> _widgetOptions = <Widget>[
-    DashboardPage(),
-    PlansPage(),
-    Testing4(),
+    HomePageDashboard(),
+    //PlansPage(),
+    Insights(),
     ChatPage(),
   ];
 
@@ -38,12 +38,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
@@ -72,10 +69,10 @@ class _HomePageState extends State<HomePage> {
                     icon: Icons.home,
                     text: 'Home',
                   ),
-                  GButton(
-                    icon: Icons.date_range,
-                    text: 'Plans',
-                  ),
+//                  GButton(
+//                    icon: Icons.date_range,
+//                    text: 'Plans',
+//                  ),
                   GButton(
                     icon: FontAwesomeIcons.map,
                     text: 'Insights',
@@ -95,6 +92,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-    ));
+    );
   }
 }
